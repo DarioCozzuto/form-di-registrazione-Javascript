@@ -1,0 +1,178 @@
+ <!DOCTYPE html>
+<html>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet"> 
+<title>form di registrazione</title>
+<script>
+
+    function registrazione() {
+            
+            //verifica campo email
+            email=formRegistrazione.Email.value;
+            chiocciola=email.indexOf("@");
+            punto=email.indexOf(".");
+            emailLength=email.length;
+                
+                
+                if(email=="") {
+                    alert("Campo email vuoto");
+                    return;
+                }
+
+                if (chiocciola==-1 || punto==-1 || emailLength<6) {
+                    alert("Formato email non valido");
+                    return;
+                }
+
+
+            //verifica campi password
+            password=formRegistrazione.Password.value;
+            confermaPassword=formRegistrazione.confermaPassword.value;
+            passwordLength=password.length;
+
+
+                if(password=="") {
+                    alert("Campo password vuoto");
+                    return;
+                }
+
+                if(confermaPassword=="") {
+                    alert("Campo conferma password vuoto");
+                    return;
+                }
+
+                if(password!=confermaPassword) {
+                    alert("La password di conferma non corrisponde alla password");
+                    return;
+                }
+
+                if(passwordLength<8) {
+                    alert("La password deve essere lunga almeno 8 caratteri");
+                    return;
+                }
+        
+
+
+            //verifica campi stato
+            stato=formRegistrazione.sceltaStato.selectedIndex;
+
+                if(stato==0) {
+                    alert("Nessuno stato selezionato");
+                    return;
+                }
+
+
+
+            //verifica checkbox privacy
+            privacy=formRegistrazione.checkboxPrivacy.checked;
+
+                if(privacy==false) {
+                    alert("Privacy box non accettato");
+                    return;
+                }
+
+
+        alert("Iscrizione effettuata con successo!");    
+    }
+
+
+    function pulizia() {
+        
+            formRegistrazione.Email.value=" ";
+            formRegistrazione.Password.value=" ";
+            formRegistrazione.confermaPassword.value=" ";
+            formRegistrazione.sceltaStato.value=" ";
+            formRegistrazione.checkboxPrivacy.value=" ";
+    }
+
+</script>
+<style>
+    h1,tr {
+        font-family: 'Kanit', sans-serif;
+    }
+
+    h1 {
+        font-size: 29px;
+        font-family: 'Kanit', sans-serif;
+    }
+
+    #submitRegistrazione {
+        background-color: white;
+        margin-top: 40px;
+        font-family: 'Kanit', sans-serif;;
+    }
+
+    #submitPulizia {
+        background-color: white;
+        margin-top: 40px;
+        margin-left: 35%;
+        font-family: 'Kanit', sans-serif;;
+    }
+
+    tr {
+        font-size: 15px;
+    }
+
+    #form {
+        display: block;
+        margin: auto;
+        border-style: solid;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-bottom: 20px;
+        padding-top: 1px;
+        width: 300px;
+        background-color: rgb(206, 211, 253);
+    }
+</style>
+<body>
+<form name="formRegistrazione" id="form">
+<h1>Form di registrazione</h1>
+<table>
+ <tr>
+    <td>Email:</td>
+    <td><input type="text" id="Email"></td>
+ </tr>
+
+ <tr>
+     <td>Password:</td>
+     <td><input type="password" id="Password"></td>
+ </tr>
+
+ <tr>
+    <td>Conferma password:</td>
+    <td><input type="password" id="confermaPassword"></td>
+ </tr>
+
+ <tr>
+    <td>Scegli lo stato:</td>
+    <td>
+    <select id="sceltaStato">
+        <option value="-1"></option>
+        <option value="IT">Italy</option>
+        <option value="US">USA</option>
+        <option value="DE">Germany</option>
+        <option value="FR">France</option>
+    </select>
+    </td>
+ </tr>
+
+ <tr>
+    <td>Privacy</td>
+    <td><input type="checkbox" id="checkboxPrivacy"></td>
+ </tr>
+
+ <tr>
+    <td><input type="submit" value="Registrati" id="submitRegistrazione" onclick="registrazione()"></td>
+    <td><input type="submit" value="Cancella dati" id="submitPulizia" onclick="pulizia()"></td>
+ </tr>
+
+
+
+</table>
+
+
+</form>
+
+</body>
+</html> 
